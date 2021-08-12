@@ -16,6 +16,10 @@ export class ErrMsgDirective implements OnInit{
     console.log('NgOnInit en la directiva');
     this.setColor();
     this.setMensaje();
+    this.setClass();
+  }
+  setClass() {
+    this.htmlElement.nativeElement.classList.add('form-text');
   }
 
   setColor(): void {
