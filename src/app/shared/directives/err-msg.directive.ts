@@ -6,7 +6,8 @@ import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 export class ErrMsgDirective implements OnInit{
 
   htmlElement: ElementRef<HTMLElement>;
-  @Input()  color: string = 'red';
+  @Input() color: string = 'red';
+  @Input() mensaje: string = 'error in field';
 
   constructor( private el: ElementRef<HTMLElement> ) { 
     this.htmlElement = el;
@@ -14,10 +15,15 @@ export class ErrMsgDirective implements OnInit{
   ngOnInit(): void {
     console.log('NgOnInit en la directiva');
     this.setColor();
+    this.setMensaje();
   }
 
   setColor(): void {
     this.htmlElement.nativeElement.style.color = this.color;
+  }
+
+  setMensaje(): void {
+    this.htmlElement.nativeElement.innerText = this.mensaje;
   }
 
 }
