@@ -7,6 +7,7 @@ export class ErrMsgDirective implements OnInit, OnChanges{
 
   private _color: string = 'red';
   private _texto: string = 'error in field';
+  private _mostrar: boolean = false;
 
   htmlElement: ElementRef<HTMLElement>;
   
@@ -19,6 +20,15 @@ export class ErrMsgDirective implements OnInit, OnChanges{
   @Input() set mensaje( texto: string ){
     this.htmlElement.nativeElement.innerText = texto;
     this._texto = texto;
+  }  
+
+  @Input() set valido( valor: boolean ){
+    if( !valor ) {
+      this.htmlElement.nativeElement.classList.add('hidden');
+    } else {
+      this.htmlElement.nativeElement.classList.remove('hidden');
+    }
+    this._mostrar = valor;
   }  
 
   constructor( private el: ElementRef<HTMLElement> ) { 
